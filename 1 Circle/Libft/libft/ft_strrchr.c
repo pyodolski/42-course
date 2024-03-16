@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:24:37 by jupyo             #+#    #+#             */
-/*   Updated: 2024/03/01 18:26:33 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/03/08 14:20:57 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strrchr(const char *str, int c)
 	int		i;
 
 	i = ft_strlen(str);
-	if (c == '/0')
+	if (c == 0)
 		return ((char *)str + i);
 	while (i >= 0)
 	{

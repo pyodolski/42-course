@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 15:16:04 by jupyo             #+#    #+#             */
-/*   Updated: 2024/03/03 15:56:42 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/03/08 14:27:43 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_list
 size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, const char *src, size_t dstsize);
 size_t		ft_strlcat(char *dest, const char *src, size_t dstsize);
-char		*ft_strchr(const char *str, int character);
+char		*ft_strchr(const char *str, int c);
 char		*ft_substr(char const *str, unsigned int start, size_t len);
 char		*ft_strnstr(const char *str, const char *to_find, size_t len);
 char		*ft_strdup(const char *str);
@@ -44,7 +44,6 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 */
 void		*ft_memset(void *dest, int c, size_t n);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
-void		*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memchr(const void *s, int c, size_t n);
 void		ft_bzero(void *dest, size_t n);
