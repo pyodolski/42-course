@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 15:16:04 by jupyo             #+#    #+#             */
-/*   Updated: 2024/03/08 14:27:43 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/03/09 19:39:01 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memchr(const void *s, int c, size_t n);
 void		ft_bzero(void *dest, size_t n);
+void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 
 /*

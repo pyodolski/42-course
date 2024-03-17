@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:30:28 by jupyo             #+#    #+#             */
-/*   Updated: 2024/03/08 14:37:50 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/03/10 16:03:00 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*cur;
 
 	new = ft_lstnew(f(lst->content));
+	if (!lst || !f || !new)
+		return (0);
 	cur = new;
 	lst = lst->next;
 	while (lst)
 	{
 		cur->next = ft_lstnew(f(lst->content));
-		cur = cur->next;
-		if (!cur)
+		if (!(cur->next))
 		{
 			ft_lstclear(&new, del);
-			return (NULL);
+			return (0);
 		}
+		cur = cur->next;
 		lst = lst->next;
 	}
 	return (new);
