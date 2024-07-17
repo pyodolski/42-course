@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daeekim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 16:08:21 by daeekim           #+#    #+#             */
-/*   Updated: 2024/06/19 18:57:49 by daeekim          ###   ########.fr       */
+/*   Created: 2024/07/17 10:23:40 by jupyo             #+#    #+#             */
+/*   Updated: 2024/07/17 16:45:50 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 
 size_t	ft_strlen(char *s)
@@ -51,6 +50,8 @@ char	*ft_strjoin(char *left_str, char *buff)
 	if (!left_str)
 	{
 		left_str = (char *)malloc(1 * sizeof(char));
+		if (!left_str)
+			return (NULL);
 		left_str[0] = '\0';
 	}
 	if (!left_str || !buff)
@@ -111,7 +112,7 @@ char	*ft_new_left_str(char *left_str)
 		free(left_str);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;

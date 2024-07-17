@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_util.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daeekim <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 16:08:21 by daeekim           #+#    #+#             */
-/*   Updated: 2024/05/15 16:08:25 by daeekim          ###   ########.fr       */
+/*   Created: 2024/07/17 10:23:40 by jupyo             #+#    #+#             */
+/*   Updated: 2024/07/17 13:53:13 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 
 size_t	ft_strlen(char *s)
@@ -30,8 +29,8 @@ char	*ft_strchr(char *s, int c)
 
 	i = 0;
 	if (!s)
-		return (0);  
-	if (c == '\0') 
+		return (0);
+	if (c == '\0')
 		return ((char *)&s[ft_strlen(s)]);
 	while (s[i] != '\0')
 	{
@@ -39,10 +38,10 @@ char	*ft_strchr(char *s, int c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	return (0); 
+	return (0);
 }
 
-char	*ft_strjoin(char *left_str, char *buff) // 이어 붙임
+char	*ft_strjoin(char *left_str, char *buff)
 {
 	size_t	i;
 	size_t	j;
@@ -69,7 +68,7 @@ char	*ft_strjoin(char *left_str, char *buff) // 이어 붙임
 	return (str);
 }
 
-char	*ft_get_line(char *left_str) // 한 줄만 새로운 문자열로 반환
+char	*ft_get_line(char *left_str)
 {
 	int		i;
 	char	*str;
@@ -77,27 +76,27 @@ char	*ft_get_line(char *left_str) // 한 줄만 새로운 문자열로 반환
 	i = 0;
 	if (!left_str[i])
 		return (NULL);
-	while (left_str[i] && left_str[i] != '\n') // 한 줄 탐색
+	while (left_str[i] && left_str[i] != '\n')
 		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2)); // 동적할당 하는데 +2 하는 이유는 개행과 NULL 때문
+	str = (char *)malloc(sizeof(char) * (i + 2));
 	if (!str)
 		return (NULL);
 	i = 0;
 	while (left_str[i] && left_str[i] != '\n')
 	{
-		str[i] = left_str[i]; // 동적할당을 한 str에 복사
+		str[i] = left_str[i];
 		i++;
 	}
-	if (left_str[i] == '\n') // 개행문자가 아닐 때까지 복사했으므로 개행문자가 있으면 복사해줌
+	if (left_str[i] == '\n')
 	{
 		str[i] = left_str[i];
 		i++;
 	}
-	str[i] = '\0'; // 마지막에 널문자
+	str[i] = '\0';
 	return (str);
 }
 
-char	*ft_new_left_str(char *left_str) // 이미 출력한 한 줄을 없애고 나머지 부분 반환
+char	*ft_new_left_str(char *left_str)
 {
 	int		i;
 	int		j;
@@ -111,14 +110,14 @@ char	*ft_new_left_str(char *left_str) // 이미 출력한 한 줄을 없애고 �
 		free(left_str);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i)); // 널문자 넣기 위해 +1해서 동적할당
+	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
 	if (!str)
 		return (NULL);
-	i++; // 개행문자에서 멈췄으니 한번더 밀어줌
+	i++;
 	j = 0;
 	while (left_str[i])
-		str[j++] = left_str[i++]; // str을 left_str에 이식해줌
-	str[j] = '\0'; // 마지막에 널문자
-	free(left_str); // 더 이상 필요 없기 때문에 메모리 해제를 해줌
+		str[j++] = left_str[i++];
+	str[j] = '\0';
+	free(left_str);
 	return (str);
 }

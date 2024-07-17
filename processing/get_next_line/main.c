@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 10:23:56 by jupyo             #+#    #+#             */
-/*   Updated: 2024/07/17 14:04:10 by jupyo            ###   ########.fr       */
+/*   Created: 2024/07/17 14:41:03 by jupyo             #+#    #+#             */
+/*   Updated: 2024/07/17 14:41:07 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
 
-# include <stdlib.h>
+int main(int argc, char **argv)
+{
+    if (argc == 2)
+    {
+        int fd;
+        char *line;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
-# endif
-
-char	*get_next_line(int fd);
-char	*ft_read_to_left_str(int fd, char *left_str);
-char	*ft_strchr(char *s, int c);
-char	*ft_strjoin(char *left_str, char *buff);
-size_t	ft_strlen(char *s);
-char	*ft_get_line(char *left_str);
-char	*ft_new_left_str(char *left_str);
-
-#endif
+        fd = open(argv[1], O_RDONLY);
+        while ((line = get_next_line(fd)))
+        {
+            printf("%s", line);
+            free(line);
+        }
+    }
+    else 
+        printf("input error\n");
+}
