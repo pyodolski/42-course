@@ -6,12 +6,11 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:23:16 by jupyo             #+#    #+#             */
-/*   Updated: 2024/07/17 14:50:32 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/07/19 21:56:39 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
 
 char	*ft_read_to_left_str(int fd, char *left_str)
 {
@@ -42,7 +41,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*left_str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (0);
 	left_str = ft_read_to_left_str(fd, left_str);
 	if (!left_str)

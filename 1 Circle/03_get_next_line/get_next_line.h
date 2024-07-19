@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:23:56 by jupyo             #+#    #+#             */
-/*   Updated: 2024/07/17 14:04:10 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/07/19 21:27:19 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 2

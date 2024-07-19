@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 14:41:03 by jupyo             #+#    #+#             */
+/*   Updated: 2024/07/17 14:41:07 by jupyo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include <stdio.h>
 #include <fcntl.h>
@@ -20,6 +32,3 @@ int main(int argc, char **argv)
     else 
         printf("input error\n");
 }
-
-//cc -Werror -Wall -Wextra -g -fsanitize=address get_next_line.c get_next_line_utils.c main.c
-//cc -Werror -Wall -Wextra -g -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
