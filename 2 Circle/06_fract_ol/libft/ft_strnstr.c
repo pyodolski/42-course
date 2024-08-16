@@ -3,31 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 05:09:40 by jtanaka           #+#    #+#             */
-/*   Updated: 2021/04/02 20:11:34 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/01 18:48:46 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/02 13:43:08 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t	big_len;
-	size_t	little_len;
 	size_t	i;
+	size_t	j;
 
-	if (*little == '\0')
-		return ((char *)big);
-	big_len = ft_strlen(big);
-	little_len = ft_strlen(little);
+	if (!*to_find)
+		return ((char *)str);
 	i = 0;
-	while (i + little_len <= len && i < big_len)
+	while (str[i] && i < len)
 	{
-		if (ft_strncmp(big + i, little, little_len) == 0)
-			return ((char *)big + i);
+		if (str[i] == to_find[0])
+		{
+			j = 0;
+			while (str[i + j] == to_find[j] && i + j < len)
+			{
+				if (to_find[j + 1] == '\0')
+					return ((char *)&str[i]);
+				j++;
+			}
+		}
 		i++;
 	}
-	return (NULL);
+	return (0);
 }

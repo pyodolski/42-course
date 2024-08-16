@@ -3,44 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 02:42:43 by jtanaka           #+#    #+#             */
-/*   Updated: 2021/04/02 20:22:33 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/02 17:52:55 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/09 18:20:40 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	itoa_recursive(char *result, int n)
+static size_t	get_digits(int n)
 {
-	int	idx;
-	int	sign;
+	size_t	i;
 
-	idx = 0;
-	sign = 1;
-	if (n / 10)
-		idx = itoa_recursive(result, n / 10);
-	else if (n < 0)
-		result[idx++] = '-';
-	if (n < 0)
-		sign = -1;
-	result[idx++] = '0' + sign * (n % 10);
-	result[idx] = '\0';
-	return (idx);
+	i = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	int			arr_size;
-	char		*result;
+	char		*str_num;
+	size_t		digits;
+	long long	num;
 
-	arr_size = get_digit(n) + 1;
+	num = n;
+	digits = get_digits(n);
 	if (n < 0)
-		arr_size++;
-	result = (char *)ft_calloc(arr_size, sizeof(char));
-	if (!result)
+	{
+		num *= -1;
+		digits++;
+	}
+	str_num = (char *)malloc(sizeof(char) * (digits + 1));
+	if (!str_num)
 		return (NULL);
-	itoa_recursive(result, n);
-	return (result);
+	*(str_num + digits) = 0;
+	while (digits--)
+	{
+		*(str_num + digits) = num % 10 + '0';
+		num = num / 10;
+	}
+	if (n < 0)
+		*(str_num + 0) = '-';
+	return (str_num);
 }

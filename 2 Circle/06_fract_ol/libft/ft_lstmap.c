@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 23:48:01 by jtanaka           #+#    #+#             */
-/*   Updated: 2021/04/02 20:10:12 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/03 18:30:28 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/10 16:03:00 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,24 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_lst;
-	t_list	*new_elem;
+	t_list	*new;
+	t_list	*cur;
 
-	if (!lst || !f)
-		return (NULL);
-	new_elem = ft_lstnew(f(lst->content));
-	if (!new_elem)
-		return (NULL);
-	new_lst = new_elem;
+	new = ft_lstnew(f(lst->content));
+	if (!lst || !f || !new)
+		return (0);
+	cur = new;
 	lst = lst->next;
 	while (lst)
 	{
-		new_elem = ft_lstnew(f(lst->content));
-		if (!new_elem)
+		cur->next = ft_lstnew(f(lst->content));
+		if (!(cur->next))
 		{
-			ft_lstclear(&new_lst, del);
-			break ;
+			ft_lstclear(&new, del);
+			return (0);
 		}
-		ft_lstadd_back(&new_lst, new_elem);
+		cur = cur->next;
 		lst = lst->next;
 	}
-	return (new_lst);
+	return (new);
 }

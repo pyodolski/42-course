@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 21:47:01 by jtanaka           #+#    #+#             */
-/*   Updated: 2020/10/15 02:18:16 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/03 18:15:41 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/03 18:17:05 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
+		return (0);
+	while (lst -> next)
+		lst = lst -> next;
 	return (lst);
 }

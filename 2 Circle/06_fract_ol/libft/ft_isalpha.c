@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/09 03:15:51 by jtanaka           #+#    #+#             */
-/*   Updated: 2021/04/02 20:14:10 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/01 14:48:05 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/01 14:56:18 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,28 @@
 
 int	ft_isalpha(int c)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
+	return (0);
 }
+
+/*
+
+#include <stdio.h>
+
+int ft_isalpha(int c);
+int main() {
+    char input;
+    printf("Enter a character: ");
+    scanf("%c", &input);
+    
+    if (ft_isalpha(input)) {
+        printf("The character is an alphabet.\n");
+    } else {
+        printf("The character is not an alphabet.\n");
+    }
+    
+    return 0;
+}
+
+*/

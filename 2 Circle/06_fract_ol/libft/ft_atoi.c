@@ -3,60 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/09 02:58:56 by jtanaka           #+#    #+#             */
-/*   Updated: 2021/04/02 17:12:12 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/02 12:53:40 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/02 13:01:22 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	num_len(const char *str)
+int	ft_isspace(char c)
 {
-	int	i;
+	if (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	else
+		return (0);
+}
 
+int	ft_atoi(const char *str)
+{
+	long	nbr;
+	long	sign;
+	size_t	i;
+
+	nbr = 0;
+	sign = 1;
 	i = 0;
-	while (ft_isdigit(*str++))
+	while ((str[i] != '\0') && ft_isspace(str[i]) == 1)
 		i++;
-	return (i);
-}
-
-static bool	is_overflow(const char *nptr, int sign)
-{
-	if (num_len(nptr) > 19)
-		return (true);
-	if (num_len(nptr) == 19)
+	if (str[i] == '-')
+		sign = -1;
+	if ((str[i] == '-') || (str[i] == '+'))
+		i++;
+	while ((str[i] != '\0') && ('0' <= str[i]) && (str[i] <= '9'))
 	{
-		if (sign == -1 && ft_strncmp(nptr, "9223372036854775808", 19) > 0)
-			return (true);
-		if (sign == 1 && ft_strncmp(nptr, "9223372036854775807", 19) > 0)
-			return (true);
-	}
-	return (false);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	unsigned int	num;
-	int				np;
-
-	np = 1;
-	num = 0;
-	while (*nptr == ' ' || *nptr == '\t' || *nptr == '\f'
-		|| *nptr == '\r' || *nptr == '\n' || *nptr == '\v')
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-		if (*nptr++ == '-')
-			np = -1;
-	if (is_overflow(nptr, np))
-	{
-		if (np == 1)
+		nbr = (nbr * 10) + (str[i] - '0');
+		if (nbr > 2147483647 && sign == 1)
 			return (-1);
-		else
+		if (nbr > 2147483648 && sign == -1)
 			return (0);
+		i++;
 	}
-	while (ft_isdigit(*nptr))
-		num = num * 10 + (*nptr++ - '0');
-	return ((int)(np * num));
+	return (sign * nbr);
 }

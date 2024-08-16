@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 01:35:52 by jtanaka           #+#    #+#             */
-/*   Updated: 2021/04/02 17:37:23 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/01 17:53:49 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/01 18:00:48 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*src_bytes;
-	unsigned char	*dest_bytes;
-	int				idx;
+	unsigned char		*new_dest;
+	unsigned char		*new_src;
 
-	if (dest == src)
+	if (dest == src || n == 0)
 		return (dest);
-	if (dest <= src)
-		return (ft_memcpy(dest, src, n));
-	src_bytes = (unsigned char *)src;
-	dest_bytes = (unsigned char *)dest;
-	idx = (int)n - 1;
-	while (idx >= 0)
+	if (dest < src)
 	{
-		dest_bytes[idx] = src_bytes[idx];
-		idx--;
+		new_dest = (unsigned char *)dest;
+		new_src = (unsigned char *)src;
+		while (n--)
+			*new_dest++ = *new_src++;
+	}
+	else
+	{
+		new_dest = (unsigned char *)dest + (n - 1);
+		new_src = (unsigned char *)src + (n - 1);
+		while (n--)
+			*new_dest-- = *new_src--;
 	}
 	return (dest);
 }

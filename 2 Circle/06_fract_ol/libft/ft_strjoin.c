@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtanaka <jtanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 03:11:11 by jtanaka           #+#    #+#             */
-/*   Updated: 2020/10/11 04:47:05 by jtanaka          ###   ########.fr       */
+/*   Created: 2024/03/02 16:16:39 by jupyo             #+#    #+#             */
+/*   Updated: 2024/03/02 16:18:39 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char			*str;
-	char			*ans;
-	unsigned int	total_len;
+	size_t	len1;
+	size_t	len2;
+	char	*result;
 
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(total_len + 1);
-	if (str == NULL)
-		return (NULL);
-	ans = str;
-	while (*s1)
-		*str++ = *s1++;
-	while (*s2)
-		*str++ = *s2++;
-	*str = '\0';
-	return (ans);
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	result = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!result)
+		return (0);
+	ft_memcpy(result, s1, len1);
+	ft_memcpy(result + len1, s2, len2);
+	result[len1 + len2] = '\0';
+	return (result);
 }
