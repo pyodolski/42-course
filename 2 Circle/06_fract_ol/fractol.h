@@ -1,23 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:15:19 by jupyo             #+#    #+#             */
-/*   Updated: 2024/08/16 16:15:21 by jupyo            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "./minilibx-linux/mlx.h" 
+# include "./minilibx-linux/mlx.h"
 # include "./libft/libft.h"
-# include <X11/X.h> 
-# include <sys/types.h> 
-# include <sys/stat.h> 
+# include <X11/X.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdint.h>
