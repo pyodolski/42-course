@@ -5,61 +5,81 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jupyo <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/22 16:17:33 by jupyo             #+#    #+#              #
-#    Updated: 2024/08/22 16:17:35 by jupyo            ###   ########.fr        #
+#    Created: 2024/08/23 20:46:12 by jupyo             #+#    #+#              #
+#    Updated: 2024/08/23 20:49:29 by jupyo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := fractol
-CC := gcc
-CFLAGS := -Werror -Wall -Wextra
-INC=/usr/include
-INCLIB=$(INC)/../lib
-MLX_PATH := ./minilibx-linux
-MLX_LIB := -L$(MLX_PATH) -lmlx
+# Program name
+NAME	= fractol
 
-LIBFT_PATH := libft
-LIBFT_MAKE := $(MAKE) -C $(LIBFT_PATH)
-LIBFT_LIB := -L./libft -lft
+# Compiler
+CC		= gcc
+CFLAGS	= -Werror -Wextra -Wall
 
-HEADER_FILES := fractol.h
-SRCS := main.c \
-  mlx_utils.c \
-  color_utils.c \
-  draw_fractal.c \
-  mlx_hooks.c \
-  mlx_hooks2.c \
-  canvas_utils.c \
-  utils.c
-OBJS := ${SRCS:.c=.o}
-DEPS := ${SRCS:.c=.d}
+# Minilibx
+MLX_PATH	= minilibx-linux/
+MLX_NAME	= libmlx.a
+MLX			= $(MLX_PATH)$(MLX_NAME)
 
-all: ${NAME}
+# Libft
+LIBFT_PATH	= libft/
+LIBFT_NAME	= libft.a
+LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
-%.o: %.c
-	# flags -MMD -MP -MF for generating dependency files
-	$(CC) $(CFLAGS)  -MMD -MP -MF $(<:.c=.d) -c $< -o $@
+# Includes
+INC			=	-I ./includes/\
+				-I ./libft/\
+				-I ./minilibx-linux/
 
-$(MLX_PATH):
-	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_PATH)
+# Sources
+SRC_PATH	=	src/
+SRC		=	main.c \
+  			mlx_utils.c \
+  			color_utils.c \
+  			draw_fractal.c \
+  			mlx_hooks.c \
+  			mlx_hooks2.c \
+  			canvas_utils.c \
+  			utils.c
+
+SRCS		= $(addprefix $(SRC_PATH), $(SRC))
+
+# Objects
+OBJ_PATH	= obj/
+OBJ			= $(SRC:.c=.o)
+OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
+
+# Default rule
+all: $(NAME)
+
+# Object file compilation
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
+# Build fractol program if object files changed
+$(NAME): $(OBJS) $(MLX) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) -lXext -lX11 -lm
+
+# Build MLX and Libft libraries
+$(MLX):
 	make -C $(MLX_PATH)
 
--include $(DEPS)
-$(NAME): $(MLX_PATH) $(OBJS)
-	$(LIBFT_MAKE)
-	$(CC) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LIB) -L$(INCLIB) -lXext -lX11 -lm -lbsd
+$(LIBFT):
+	make -C $(LIBFT_PATH)
 
+# Clean up object files and executables
 clean:
-	$(LIBFT_MAKE) clean
-	${RM} ${OBJS}
-	${RM} ${DEPS}
+	rm -rf $(OBJ_PATH)
+	make clean -C $(MLX_PATH)
+	make clean -C $(LIBFT_PATH)
 
 fclean: clean
-	$(LIBFT_MAKE) fclean
-	${RM} ${NAME}
+	rm -f $(NAME)
+	make fclean -C $(LIBFT_PATH)
 
 re: fclean all
 
-bonus: $(NAME)
+.PHONY: all clean fclean re
 
-.PHONY: all clean fclean re bonus
