@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 11:27:38 by jupyo             #+#    #+#             */
-/*   Updated: 2024/08/29 19:11:26 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/08/29 21:51:29 by pyodolski        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,31 @@ void	sort_num3(t_deque *a)
 		rra(a);
 		sa(a);
 	}
+	else if (arr[0] == 0 && arr[1] == 1)
+	    return ;
+	else if (arr[0] == 1 && arr[1] == 0)
+	    sa(a);
+	else if (arr[0] == 1 && arr[1] == 2)
+	    rra(a);
+	else if (arr[0] == 2 && arr[1] == 0)
+	    ra(a);
+	else if (arr[0] == 2 && arr[1] == 1)
+	{
+	    sa(a);
+	    rra(a);
+	}
+}
+
+void	sort4(t_deque *a, t_deque *b, int size)
+{
+    t_node  *node;
+
+    node = a->top;
+    max_push_b(node, a, size);
+    pb(a, b);
+    sort3(a);
+    pa(a, b);
+    ra(a);
 }
 
 void	sort_num35(int size, t_deque *a, t_deque *b)
