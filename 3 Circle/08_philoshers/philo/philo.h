@@ -1,0 +1,79 @@
+#ifndef PHILO_H
+# define PHILO_H
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <pthread.h>
+# include <unistd.h>
+# include <sys/time.h>
+
+# define OK				1
+# define ERROR			0
+# define TRUE			1
+# define FALSE			0
+
+# define LEFT			0
+# define RIGHT			1
+
+# define PHL_TAKE_FORK	0
+# define PHL_EATING		1
+# define PHL_SLEEPING	2
+# define PHL_THINKING	3
+# define PHL_DEAD		4
+# define PHL_ENOUGH		5
+
+typedef struct s_arg
+{
+	int	number;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	must_eat_count;
+}	t_arg;
+
+typedef struct s_data
+{
+	int				value;
+	pthread_mutex_t	lock;
+}	t_data;
+
+typedef struct s_resource
+{
+	int				start;
+	t_data			*forks;
+	t_data			end;
+	pthread_mutex_t	message_lock;
+}	t_resource;
+
+typedef struct s_philosopher
+{
+	int				index;
+	int				fork_index[2];
+	t_data			eat_count;
+	t_data			die_time;
+	t_resource		*res;
+	t_arg			*arg;
+
+	pthread_t		thread;
+}	t_philosopher;
+
+int		input(int ac, char **av, t_arg *arg);
+
+void	init_data(t_data *data);
+void	set_value(t_data *data, int value);
+int		get_value(t_data *data);
+void	delete_data(t_data *data);
+
+int		get_time(void);
+void	psleep(int end_time);
+void	display_message(t_philosopher *philo, int type);
+
+void	init_simulation(t_arg *arg, t_resource *res, t_philosopher **philos);
+void	start_simulation(t_arg *arg, t_philosopher *philos);
+void	end_simulation(t_arg *arg, t_resource *res, t_philosopher *philos);
+
+void	*philosopher(void *data);
+
+void	monitoring(t_arg *arg, t_philosopher *philos, t_data *end);
+
+#endif
