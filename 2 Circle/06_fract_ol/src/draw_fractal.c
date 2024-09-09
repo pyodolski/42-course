@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/23 19:07:15 by jupyo             #+#    #+#             */
-/*   Updated: 2024/08/23 19:07:16 by jupyo            ###   ########.fr       */
+/*   Created: 2024/08/22 16:15:48 by jupyo             #+#    #+#             */
+/*   Updated: 2024/08/22 16:19:55 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,6 @@ static uint32_t	get_color_in_fractal(t_canvas *canvas)
 	return (color);
 }
 
-/*
- * Draw the Mandelbrot set.
- * A Mandelbrot set is a set that does not diverge when z_n = z_(n-1) + C.
- * C is the position of the pixel to be drawn.
- * Z_0 should be set to 0.
- *
- * If divergence occurs, fill with black
- *
- * Memo:
- *   Z_(n+1) = Z_n ^ 2 + C (Z is an expression for a complex number)
- *   (a + bj)^2 = a^2 + 2abj - b^2
-*/
 int	draw_mandelbrot(t_canvas *canvas)
 {
 	int	x;
@@ -74,14 +62,6 @@ int	draw_mandelbrot(t_canvas *canvas)
 	return (0);
 }
 
-/*
- * Draw the Julia set.
- * The Julia set is the set that does not diverge when z_n = z_(n-1) + C.
- * C is a complex constant (the same number is used for all pixels).
- * Z_0 is the position of the pixel to be drawn.
- *
- * If divergence occurs, it is filled with black.
- */
 int	draw_julia(t_canvas *canvas)
 {
 	int	x;
@@ -131,20 +111,6 @@ static uint32_t	get_color_in_burningship(t_canvas *canvas)
 	return (color);
 }
 
-/*
- * Draw the burningship set.
- * A burning ship set is a set that does not diverge when z_n = z_(n-1) + C.
- * C is the position of the pixel to be drawn.
- * Z_0 should be set to 0
- *
- * If divergent, fill with black.
- *
- * Z_(n+1) = (abs(z_re) + abs(z_im)j) ^ 2 + C
- *   (Z is an expression for a complex number)
- *
- * The difference from the Mandelbrot set is that
- *   in barningship we take absolute values in sequences of iterations.
- */
 int	draw_burningship(t_canvas *canvas)
 {
 	int	x;

@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:30:45 by jupyo             #+#    #+#             */
-/*   Updated: 2024/08/16 18:30:53 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:57:11 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	zoom_canvas(t_canvas *canvas, int button, int x, int y)
 	double	mouse_im;
 	double	interpolation;
 
+	interpolation = 1;
 	mouse_re = (double)x
 		/ (WIDTH / (canvas->max_re - canvas->min_re)) + canvas->min_re;
 	mouse_im = (double)y
