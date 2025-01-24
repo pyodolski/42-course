@@ -1,79 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 11:27:22 by wcorrea-          #+#    #+#             */
+/*   Updated: 2023/05/29 00:31:47 by wcorrea-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <stdio.h>
-# include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
 # include <sys/time.h>
 
-# define OK				1
-# define ERROR			0
-# define TRUE			1
-# define FALSE			0
-
-# define LEFT			0
-# define RIGHT			1
-
-# define PHL_TAKE_FORK	0
-# define PHL_EATING		1
-# define PHL_SLEEPING	2
-# define PHL_THINKING	3
-# define PHL_DEAD		4
-# define PHL_ENOUGH		5
-
-typedef struct s_arg
+typedef struct s_philo
 {
-	int	number;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat_count;
-}	t_arg;
-
-typedef struct s_data
-{
-	int				value;
-	pthread_mutex_t	lock;
-}	t_data;
-
-typedef struct s_resource
-{
-	int				start;
-	t_data			*forks;
-	t_data			end;
-	pthread_mutex_t	message_lock;
-}	t_resource;
-
-typedef struct s_philosopher
-{
-	int				index;
-	int				fork_index[2];
-	t_data			eat_count;
-	t_data			die_time;
-	t_resource		*res;
-	t_arg			*arg;
-
+	int				id;
+	int				eat_count;
+	int				l_fork;
+	int				r_fork;
+	long long		last_eat;
+	struct s_table	*table;
 	pthread_t		thread;
-}	t_philosopher;
+}					t_philo;
 
-int		input(int ac, char **av, t_arg *arg);
+typedef struct s_table
+{
+	int				philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat_times;
+	int				ate_enough;
+	int				finish_flag;
+	long long		start_time;
+	t_philo			*philo;
+	pthread_mutex_t	*fork_padlock;
+	pthread_mutex_t	print_padlock;
+	pthread_mutex_t	eat_padlock;
+	pthread_mutex_t	finish_padlock;
+}					t_table;
 
-void	init_data(t_data *data);
-void	set_value(t_data *data, int value);
-int		get_value(t_data *data);
-void	delete_data(t_data *data);
+# define TAKE "has taken a fork"
+# define EAT "is eating"
+# define SLEEP "is sleeping"
+# define THINK "is thinking"
+# define DIE "died"
+# define FINISH "f"
+# define FINISH_MSG "All philosophers ate enough!"
+# define YES 1
+# define NO 0
 
-int		get_time(void);
-void	psleep(int end_time);
-void	display_message(t_philosopher *philo, int type);
+void		advance_time(t_philo *philo, long long ms);
+void		print_action(t_philo *philo, const char *status);
+long long	now(void);
+void		exit_error(char *msg, t_table *table, int n);
+int			ft_atoi(const char *s);
 
-void	init_simulation(t_arg *arg, t_resource *res, t_philosopher **philos);
-void	start_simulation(t_arg *arg, t_philosopher *philos);
-void	end_simulation(t_arg *arg, t_resource *res, t_philosopher *philos);
+int			lone_philosopher(t_table *table);
+void		start_padlocks(t_table *table);
+void		call_philosophers(t_table *table);
+void		set_table(t_table *table, int ac, char **av);
 
-void	*philosopher(void *data);
+int			is_time_to_finish(t_philo *philo, int order);
+int			is_someone_dead_or_full(t_philo *philo);
+void		time_to_eat(t_philo *philo);
+void		*start_dinner(void *arg);
+int			turn_philosophers_in_threads(t_table *table);
 
-void	monitoring(t_arg *arg, t_philosopher *philos, t_data *end);
+void		clean_table(t_table *table);
+void		destroy_padlocks(t_table *table);
+void		finish_dinner(t_table *table);
+void		start_dinner_monitor(t_table *table);
 
 #endif
