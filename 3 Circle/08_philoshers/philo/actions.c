@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wcorrea- <wcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:51:37 by wcorrea-          #+#    #+#             */
-/*   Updated: 2023/05/29 00:31:47 by wcorrea-         ###   ########.fr       */
+/*   Created: 2025/01/04 20:12:16 by jupyo             #+#    #+#             */
+/*   Updated: 2025/01/25 22:30:42 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void	*start_dinner(void *ptr)
 		advance_time(philo, philo->table->time_to_sleep);
 		print_action(philo, THINK);
 		if (philo->table->philosophers % 2 != 0
-			&& philo->table->philosophers <= 127)
+			&& philo->table->philosophers <= 199)
 			advance_time(philo, philo->table->time_to_eat);
-	}	
+	}
 	return (0);
 }
