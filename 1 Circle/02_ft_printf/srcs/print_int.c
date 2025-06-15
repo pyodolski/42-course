@@ -40,7 +40,7 @@ int	print_int(int n)
 {
 	int	len;
 
-	if (n == INT_MIN)
+	if (n == -2147483648)
 		return ((write(1, "-2147483648", 11)));
 	len = i_digits(n);
 	if (n < 0)

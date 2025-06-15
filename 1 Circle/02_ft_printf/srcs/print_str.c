@@ -6,13 +6,13 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:53:56 by jupyo             #+#    #+#             */
-/*   Updated: 2024/03/29 14:54:24 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/03/29 16:25:14 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	prt_str(char const *str)
+int	print_str(char const *str)
 {
 	if (str == NULL)
 		return (write(1, "(null)", 6));

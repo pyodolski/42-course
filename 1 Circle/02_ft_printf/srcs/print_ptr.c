@@ -33,7 +33,7 @@ static void	put_ptr(unsigned long long addr)
 
 	if (addr >= 16)
 		put_ptr(addr / 16);
-	write(STDOUT_FILENO, &digits[addr % 16], 1);
+	write(1, &digits[addr % 16], 1);
 }
 
 int	print_ptr(void *addr)

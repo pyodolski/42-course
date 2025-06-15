@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-int		ft_printf(const char *__format, ...);
+int		ft_printf(const char *format, ...);
 int		print_str(char const *str);
 int		print_ptr(void *ptr_addr);
 int		print_int(int n);

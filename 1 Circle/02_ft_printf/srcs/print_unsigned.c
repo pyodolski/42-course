@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:54:41 by jupyo             #+#    #+#             */
-/*   Updated: 2024/03/29 14:55:09 by jupyo            ###   ########.fr       */
+/*   Updated: 2024/03/29 16:24:52 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	put_unsigned(unsigned int nbr)
 	write(1, &digits[nbr % 10], 1);
 }
 
-int	prt_unsigned(unsigned int nbr)
+int	print_unsigned(unsigned int nbr)
 {
 	put_unsigned(nbr);
 	return (u_digits(nbr));
