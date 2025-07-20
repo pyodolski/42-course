@@ -5,14 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 14:03:18 by jupyo             #+#    #+#             */
-/*   Updated: 2025/07/20 15:10:06 by jupyo            ###   ########.fr       */
+/*   Created: 2025/07/13 17:23:46 by jupyo             #+#    #+#             */
+/*   Updated: 2025/07/20 16:36:54 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
 
-// 생성자
+#include "Animal.hpp"
 
 Animal::Animal(void) 
 {
@@ -29,8 +28,6 @@ Animal::~Animal(void)
 {
 	std::cout << "Animal destructor called" << std::endl;
 }
-
-// 연산자 
 
 Animal &Animal::operator=(Animal const &src)
 {

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 15:22:16 by jupyo             #+#    #+#             */
-/*   Updated: 2025/07/20 16:09:58 by jupyo            ###   ########.fr       */
+/*   Created: 2025/07/20 14:16:23 by jupyo             #+#    #+#             */
+/*   Updated: 2025/07/20 17:46:56 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,35 @@
 
 int main()
 {
-	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+    const Animal* i = new Cat();
 
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
 
-	delete i;
-	delete j;
-	delete meta;
+    i->makeSound();
+    j->makeSound();
 
-	const WrongAnimal* k = new WrongCat();
+    delete j;
+    delete i;
 
-	k->makeSound();
-	k->getType();
+	std::cout << std::endl;
 
-	delete k;
+	Animal  *animals[6] =
+    {
+        new Dog(), new Dog(), new Dog(),
+        new Cat(), new Cat(), new Cat()
+    };
+
+    for (int i = 0; i < 6; i++)
+    {
+        std::cout << std::endl << "Destroy Animal " << i + 1 << std::endl;
+        delete animals[i];
+    }
+
+	// Animal test;
+
+
 
 	return 0;
 }

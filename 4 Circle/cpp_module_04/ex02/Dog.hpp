@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 14:18:25 by jupyo             #+#    #+#             */
-/*   Updated: 2025/07/20 15:10:21 by jupyo            ###   ########.fr       */
+/*   Created: 2025/07/20 14:16:13 by jupyo             #+#    #+#             */
+/*   Updated: 2025/07/20 14:16:19 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 
 # include <iostream>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog : public Animal
 {
+	private:
+		Brain *_brain;
+		
 	public:
 		Dog(void);
 		Dog(Dog const &src);	
@@ -25,7 +29,9 @@ class Dog : public Animal
 		
 		Dog &operator=(Dog const &src);
 
-		void makeSound(void) const;	
+		void makeSound(void) const;
+
+		Brain *getBrain(void) const;
 };
 
 #endif

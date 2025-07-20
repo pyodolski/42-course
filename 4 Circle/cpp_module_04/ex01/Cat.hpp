@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 14:18:25 by jupyo             #+#    #+#             */
-/*   Updated: 2025/07/20 15:10:21 by jupyo            ###   ########.fr       */
+/*   Created: 2025/07/13 17:24:31 by jupyo             #+#    #+#             */
+/*   Updated: 2025/07/20 16:40:11 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef	CAT_HPP
+# define CAT_HPP
 
 # include <iostream>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
-class Dog : public Animal
+class Cat : public Animal
 {
-	public:
-		Dog(void);
-		Dog(Dog const &src);	
-		virtual ~Dog(void);
+	private:
+		Brain *_brain;
 		
-		Dog &operator=(Dog const &src);
+	public:
+		Cat(void);
+		Cat(Cat const &src);
+		virtual ~Cat(void);
 
-		void makeSound(void) const;	
+		Cat &operator=(Cat const &src);
+		
+		void makeSound(void) const;
+
+		Brain *getBrain(void) const;
 };
 
 #endif

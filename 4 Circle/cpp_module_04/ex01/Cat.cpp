@@ -5,27 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 14:13:15 by jupyo             #+#    #+#             */
-/*   Updated: 2025/07/20 15:10:10 by jupyo            ###   ########.fr       */
+/*   Created: 2025/07/13 17:24:23 by jupyo             #+#    #+#             */
+/*   Updated: 2025/07/20 16:36:41 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
+
 Cat::Cat(void)
 {
 	std::cout << "Cat default constructor called" << std::endl;
 	this->type = "Cat";
+	this->_brain = new Brain();
 }
 
 Cat::Cat(Cat const &src) : Animal(src)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
+	this->_brain = NULL;
 	*this = src;
 }
 
 Cat::~Cat(void)
 {
+	delete this->_brain;
 	std::cout << "Cat destructor called" << std::endl;
 }
 
@@ -34,6 +38,8 @@ Cat	&Cat::operator=(Cat const &src)
 	std::cout << "Cat assignation operator called" << std::endl;
 	if (this == &src)
 		return (*this);
+	delete this->_brain;
+	this->_brain = new Brain(*src._brain);
 	return (*this);
 }
 
@@ -41,3 +47,5 @@ void	Cat::makeSound(void) const
 {
 	std::cout << "Meow" << std::endl;
 }
+
+Brain	*Cat::getBrain(void) const {return (this->_brain);}

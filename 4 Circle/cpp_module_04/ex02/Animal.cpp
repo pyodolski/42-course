@@ -5,16 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 14:03:18 by jupyo             #+#    #+#             */
-/*   Updated: 2025/07/20 15:10:06 by jupyo            ###   ########.fr       */
+/*   Created: 2025/07/20 14:13:50 by jupyo             #+#    #+#             */
+/*   Updated: 2025/07/20 17:42:41 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-// 생성자
-
-Animal::Animal(void) 
+Animal::Animal()
 {
 	std::cout << "Animal default constructor called" << std::endl;
 }
@@ -30,8 +28,6 @@ Animal::~Animal(void)
 	std::cout << "Animal destructor called" << std::endl;
 }
 
-// 연산자 
-
 Animal &Animal::operator=(Animal const &src)
 {
 	std::cout << "Animal assignation operator called" << std::endl;
@@ -43,8 +39,3 @@ Animal &Animal::operator=(Animal const &src)
 
 std::string Animal::getType(void) const {return (this->type);}
 void Animal::setType(std::string const type) {this->type = type;}
-
-void Animal::makeSound(void) const
-{
-	std::cout << "Animal" << std::endl;
-}

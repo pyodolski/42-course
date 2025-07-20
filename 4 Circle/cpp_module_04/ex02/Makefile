@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jupyo <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/11 15:16:23 by jupyo             #+#    #+#              #
-#    Updated: 2025/07/20 15:11:49 by jupyo            ###   ########.fr        #
+#    Created: 2025/07/20 14:16:46 by jupyo             #+#    #+#              #
+#    Updated: 2025/07/20 17:42:15 by jupyo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = animals
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 
 OBJS = ${SRC:.cpp=.o}
 

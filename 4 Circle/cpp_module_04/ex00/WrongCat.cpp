@@ -6,7 +6,7 @@
 /*   By: jupyo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:18:52 by jupyo             #+#    #+#             */
-/*   Updated: 2025/07/15 15:20:34 by jupyo            ###   ########.fr       */
+/*   Updated: 2025/07/20 15:12:21 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ WrongCat	&WrongCat::operator=(WrongCat const &src)
 
 void	WrongCat::makeSound(void) const
 {
-	std::cout << "WrongCat: Meow meow!" << std::endl;
+	std::cout << "Meow" << std::endl;
 }
