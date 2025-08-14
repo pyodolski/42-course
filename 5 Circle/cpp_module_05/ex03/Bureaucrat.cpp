@@ -5,20 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jupyo <jupyo@student.42gyeongsan.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 15:41:53 by jupyo             #+#    #+#             */
-/*   Updated: 2025/08/14 20:22:10 by jupyo            ###   ########.fr       */
+/*   Created: 2025/08/14 21:50:47 by jupyo             #+#    #+#             */
+/*   Updated: 2025/08/14 21:59:27 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 {
 
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
-{	
+{
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
@@ -39,11 +40,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 	return (*this);
 }
 
-
-Bureaucrat::~Bureaucrat()
-{
-
-}
+Bureaucrat::~Bureaucrat(){}
 
 std::string Bureaucrat::getName() const
 {
@@ -69,6 +66,33 @@ void Bureaucrat::decrementGrade()
 		throw GradeTooLowException();
 	else
 		_grade++;
+}
+
+void Bureaucrat::signForm(AForm &form)
+{
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+		return;
+	}
+	std::cout << _name << " signed " << form.getName() << std::endl;
+}
+
+void Bureaucrat::executeForm(const AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}	
 }
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &other)
