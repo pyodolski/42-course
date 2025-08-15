@@ -6,16 +6,13 @@
 /*   By: jupyo <jupyo@student.42gyeongsan.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:41:53 by jupyo             #+#    #+#             */
-/*   Updated: 2025/08/14 20:22:10 by jupyo            ###   ########.fr       */
+/*   Updated: 2025/08/15 11:35:07 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
-{
-
-}
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150){}
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {	
@@ -27,10 +24,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 		_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade)
-{
-
-}
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade){}
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
@@ -40,10 +34,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 }
 
 
-Bureaucrat::~Bureaucrat()
-{
-
-}
+Bureaucrat::~Bureaucrat(){}
 
 std::string Bureaucrat::getName() const
 {

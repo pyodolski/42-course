@@ -6,7 +6,7 @@
 /*   By: jupyo <jupyo@student.42gyeongsan.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 21:54:02 by jupyo             #+#    #+#             */
-/*   Updated: 2025/08/14 21:55:16 by jupyo            ###   ########.fr       */
+/*   Updated: 2025/08/15 12:03:39 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ class AForm
 		virtual void	performAction() const = 0;
 
 	public:
-		// Constructors
 		AForm();
 		AForm(const std::string name, const int sign_grade, const int execute_grade);
 		AForm(const AForm &other);
 		AForm &operator=(const AForm &other);
 		virtual ~AForm();
 
-		// Member fonctions
 		void			beSigned(const Bureaucrat &bureaucrat);
 		std::string 	getName() const;
 		bool			getIsSigned() const;

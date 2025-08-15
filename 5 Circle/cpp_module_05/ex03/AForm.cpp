@@ -6,7 +6,7 @@
 /*   By: jupyo <jupyo@student.42gyeongsan.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 21:53:47 by jupyo             #+#    #+#             */
-/*   Updated: 2025/08/14 21:53:48 by jupyo            ###   ########.fr       */
+/*   Updated: 2025/08/15 11:59:46 by jupyo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ AForm::~AForm()
 	
 }
 
-// Member function
 void AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= _sign_grade)
