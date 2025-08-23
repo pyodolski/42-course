@@ -1,6 +1,7 @@
 #include <iostream>
 
 template <typename T>
+// 어떤 타입이 들어와도 동작할 수 있게 해주는 template
 void swap(T &a, T &b)
 {
 	T tmp = a;

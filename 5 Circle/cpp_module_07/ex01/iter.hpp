@@ -1,5 +1,5 @@
-
 #include <iostream>
+// #include <iomanip>
 
 template <typename T>
 void iter(T *array, size_t size, void (*f)(const T &))
@@ -12,4 +12,5 @@ template <typename T>
 void print(const T &data)
 {
 	std::cout << data << std::endl;
+    // std::cout << std::fixed << std::setprecision(1) << data << std::endl;
 }

@@ -6,6 +6,8 @@ class Array
 public:
 	explicit Array();
 	explicit Array(unsigned int n);
+	// Array a = 5 같은 암묵적 변환 방지용
+	// 자동적으로 Array(5) 호출
 	Array(const Array &src);
 	~Array();
 
